@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Popup</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    
+    .cookie-popup {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #f1f1f1;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    .cookie-popup.show {
+      display: block;
+    }
+
+    .cookie-popup button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .cookie-popup button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="cookie-popup" id="cookiePopup">
+    <p>This website uses cookies to ensure you get the best experience on our website.</p>
+    <button id="acceptButton">Accept</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const cookiePopup = document.getElementById("cookiePopup");
+      const acceptButton = document.getElementById("acceptButton");
+
+      if (!localStorage.getItem("cookieConsent")) {
+        cookiePopup.classList.add("show");
+      }
+
+      acceptButton.addEventListener("click", function () {
+        localStorage.setItem("cookieConsent", "yes");
+        cookiePopup.classList.remove("show");
+      });
+    });
+  </script>
+</body>
+</html>
